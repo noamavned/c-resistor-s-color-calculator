@@ -1,4 +1,4 @@
-﻿namespace nagad
+namespace nagad
 {
     public partial class Form1 : Form
     {
@@ -9,38 +9,38 @@
 
         private double tolerance(string color)
         {
-            switch (color)
+            var toleranceValues = new Dictionary<string, double>
             {
-                case "BROWN": return 1;
-                case "RED": return 2;
-                case "ORANGE": return 3;
-                case "YELLOW": return 4;
-                case "GREEN": return 0.5;
-                case "BLUE": return 0.25;
-                case "VIOLET": return 0.1;
-                case "GREY": return 0.005;
-                case "GOLD": return 5;
-                case "SILVER": return 10;
-            }
-            return 0;
+                { "BROWN", 1 },
+                { "RED", 2 },
+                { "ORANGE", 3 },
+                { "YELLOW", 4 },
+                { "GREEN", 0.5 },
+                { "BLUE", 0.25 },
+                { "VIOLET", 0.1 },
+                { "GREY", 0.005 },
+                { "GOLD", 5 },
+                { "SILVER", 10 }
+            };
+            return toleranceValues.TryGetValue(color.ToUpper(), out double result) ? result : 0;
         }
 
         private string color_to_num(string color)
         {
-            switch(color)
+            var colorToNumMappings = new Dictionary<string, string>
             {
-                case "BLACK": return "0";
-                case "BROWN": return "1";
-                case "RED": return "2";
-                case "ORANGE": return "3";
-                case "YELLOW": return "4";
-                case "GREEN": return "5";
-                case "BLUE": return "6";
-                case "VIOLET": return "7";
-                case "GREY": return "8";
-                case "WHITE": return "9";
-            }
-            return "0";
+                { "BLACK", "0" },
+                { "BROWN", "1" },
+                { "RED", "2" },
+                { "ORANGE", "3" },
+                { "YELLOW", "4" },
+                { "GREEN", "5" },
+                { "BLUE", "6" },
+                { "VIOLET", "7" },
+                { "GREY", "8" },
+                { "WHITE", "9" }
+            };
+            return colorToNumMappings.TryGetValue(color.ToUpper(), out string result) ? result : "0";
         }
 
         private void calc_btn_Click(object sender, EventArgs e)
